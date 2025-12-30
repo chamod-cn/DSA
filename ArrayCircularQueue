@@ -1,0 +1,114 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package ArrayCircularQueue;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class ArrayCircularQueue {
+
+     private int[] queue;
+    private int front, rear, size;
+    private int capacity;
+
+    // Constructor
+    public ArrayCircularQueue(int capacity) {
+        this.capacity = capacity;
+        queue = new int[capacity];
+        front = -1;
+        rear = -1;
+        size = 0;
+    }
+
+    // ENQUEUE operation
+    public void enqueue(int x) {
+
+        if (isFull()) {
+            System.out.println("Queue is Full!");
+            return;
+        }
+
+        if (front == -1) {   // first element
+            front = 0;
+        }
+
+        rear = (rear + 1) % capacity;
+        queue[rear] = x;
+        size++;
+
+        System.out.println("Enqueue : " + x);
+    }
+
+    // DEQUEUE operation
+    public int dequeue() {
+
+        if (isEmpty()) {
+            System.out.println("Queue is Empty!");
+            return -1;
+        }
+
+        int removed = queue[front];
+
+        if (front == rear) {   // last element removed
+            front = -1;
+            rear = -1;
+        } else {
+            front = (front + 1) % capacity;
+        }
+
+        size--;
+        System.out.println("Dequeue : " + removed);
+        return removed;
+    }
+
+    // Check empty
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    // Check full
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    // DISPLAY queue
+    public void display() {
+
+        if (isEmpty()) {
+            System.out.println("[ ]");
+            return;
+        }
+
+        System.out.print("Queue : [ ");
+        int i = front;
+        for (int count = 0; count < size; count++) {
+            System.out.print(queue[i] + " ");
+            i = (i + 1) % capacity;
+        }
+        System.out.println("]");
+    }
+    public static void main(String[] args) {
+       
+        ArrayCircularQueue q = new  ArrayCircularQueue(5);
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.display();
+
+        q.dequeue();
+        q.display();
+
+        q.enqueue(40);
+        q.enqueue(50);
+        q.enqueue(60);
+        q.display();
+
+        q.dequeue();
+        q.display();
+    }
+    
+}
