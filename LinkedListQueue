@@ -1,0 +1,122 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package LinkedListQueue;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class LinkedListQueue {
+
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node front;
+    private Node rear;
+
+    // Constructor
+    public LinkedListQueue() {
+        front = rear = null;
+    }
+
+    // ENQUEUE operation
+    public void enqueue(int data) {
+
+        Node newNode = new Node(data);
+
+        // If queue is empty
+        if (rear == null) {
+            front = rear = newNode;
+            System.out.println("Enqueue : " + data);
+            return;
+        }
+
+        rear.next = newNode;
+        rear = newNode;
+
+        System.out.println("Enqueue : " + data);
+    }
+
+    // DEQUEUE operation
+    public int dequeue() {
+
+        if (front == null) {
+            System.out.println("Queue is Empty!");
+            return -1;
+        }
+
+        int dequeued = front.data;
+        front = front.next;
+
+        // If queue becomes empty
+        if (front == null) {
+            rear = null;
+        }
+
+        System.out.println("Dequeue : " + dequeued);
+        return dequeued;
+    }
+
+    // PEEK operation
+    public int peek() {
+
+        if (front == null) {
+            System.out.println("Queue is Empty!");
+            return -1;
+        }
+
+        return front.data;
+    }
+
+    // EMPTY check
+    public boolean isEmpty() {
+        return front == null;
+    }
+
+    // DISPLAY queue
+    public void display() {
+
+        if (isEmpty()) {
+            System.out.println("[ ]");
+            return;
+        }
+
+        Node temp = front;
+        System.out.print("Queue (Front → Rear) : ");
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+       LinkedListQueue q = new LinkedListQueue();
+
+        System.out.println("Testing FIFO Queue using Linked List\n");
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        q.display();
+
+        q.dequeue();
+        q.display();
+
+        System.out.println("Peek : " + q.peek());
+        System.out.println("isEmpty : " + q.isEmpty());
+    }
+    
+}
