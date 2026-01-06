@@ -1,0 +1,76 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package CircularDoublyLinkedList;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class CircularDoublyLinkedList {
+
+     class Node {
+        int data;
+        Node prev;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    private Node head = null;
+
+    // INSERT at end
+    public void insert(int data) {
+
+        Node newNode = new Node(data);
+
+        // If list is empty
+        if (head == null) {
+            head = newNode;
+            head.next = head;
+            head.prev = head;
+            return;
+        }
+
+        Node last = head.prev;
+
+        newNode.next = head;
+        newNode.prev = last;
+
+        last.next = newNode;
+        head.prev = newNode;
+    }
+
+    // DISPLAY list
+    public void display() {
+
+        if (head == null) {
+            System.out.println("[ ]");
+            return;
+        }
+
+        Node temp = head;
+        System.out.print("List : ");
+
+        do {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        } while (temp != head);
+
+        System.out.println("(back to head)");
+    }
+    public static void main(String[] args) {
+       
+        CircularDoublyLinkedList list = new CircularDoublyLinkedList();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        list.display();
+    }
+    
+}
