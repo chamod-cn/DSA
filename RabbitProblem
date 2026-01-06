@@ -1,0 +1,31 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package RabbitProblem;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class RabbitProblem {
+
+   static int rabbits(int n) {
+
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+
+        return rabbits(n - 1) + rabbits(n - 2);
+    }
+    public static void main(String[] args) {
+          int months = 6;
+
+        System.out.println("Rabbit Problem\n");
+
+        for (int i = 1; i <= months; i++) {
+            System.out.println("Month " + i + " : " + rabbits(i) + " pairs");
+        }
+    }
+    
+}
