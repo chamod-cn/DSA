@@ -1,0 +1,50 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package MergeSort;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class MergeSort {
+
+    public static void selectionSort(int[] arr) {
+
+        int n = arr.length;
+
+        // Outer loop
+        for (int i = 0; i < n - 1; i++) {
+
+            int minIndex = i;
+
+            // Find minimum element
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            // Swap minimum with first element
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+    public static void main(String[] args) {
+       int[] arr = {5, 3, 8, 4, 2};
+
+        System.out.println("Before Sorting:");
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+
+        selectionSort(arr);
+
+        System.out.println("\nAfter Sorting:");
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+    }
+}
