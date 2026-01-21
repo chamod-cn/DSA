@@ -1,0 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package OptimizedInsertionSort;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class OptimizedInsertionSort {
+
+    public static void insertionSort(int[] arr) {
+
+        int n = arr.length;
+
+        // Start from second element
+        for (int i = 1; i < n; i++) {
+
+            int key = arr[i];
+            int j = i - 1;
+
+            // Optimization: shift only while needed
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+
+            // Insert key at correct position
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 4, 5, 8};
+
+        System.out.println("Before Sorting:");
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+
+        insertionSort(arr);
+
+        System.out.println("\nAfter Sorting:");
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+    }
+}
