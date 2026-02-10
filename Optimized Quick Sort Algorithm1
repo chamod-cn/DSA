@@ -1,0 +1,64 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package OptimizedQuickSortAlgorithm;
+
+/**
+ *
+ * @author chamod Navinda
+ */
+public class OptimizeQuickSortAlgorithm {
+
+   static int partition(int[] arr, int low, int high) {
+
+        int pivot = arr[(low + high) / 2];
+
+        while (low <= high) {
+
+            while (arr[low] < pivot) {
+                low++;
+            }
+
+            while (arr[high] > pivot) {
+                high--;
+            }
+
+            if (low <= high) {
+
+                int temp = arr[low];
+                arr[low] = arr[high];
+                arr[high] = temp;
+
+                low++;
+                high--;
+            }
+        }
+        return low;
+    }
+   static void quickSort(int[] arr, int low, int high) {
+
+        if (low < high) {
+
+            int index = partition(arr, low, high);
+
+            // Sort smaller parts
+            quickSort(arr, low, index - 1);
+            quickSort(arr, index, high);
+        }
+   }
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 8, 4, 2};
+
+        System.out.println("Before Sorting:");
+        for (int x : arr)
+            System.out.print(x + " ");
+
+        quickSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nAfter Sorting:");
+        for (int x : arr)
+            System.out.print(x + " ");
+    }
+    
+}
